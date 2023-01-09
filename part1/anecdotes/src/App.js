@@ -1,9 +1,9 @@
 import {useState} from 'react'
 
-var n = 7  // arbitrary length
-let a = Array(n).fill(0)
+// var n = 7  // arbitrary length
+// let a = Array(n).fill(0)
 
-const copies = [...a]
+//const copies = [...a]
 
 const App = () =>{
   const anecdotes = [
@@ -18,30 +18,35 @@ const App = () =>{
 
  
   const [selected, setSelected] = useState(0)
-  const [votes,setVotes] = useState(copies)
-
+ // const [votes,setVotes] = useState(copies)
+ const [votes,setVotes] = useState(Array(7).fill(0))
   const handleAnec = () =>{
     setSelected(Math.floor(Math.random()*7))
   }
 
-  const handleVotes = () =>{
-    //votes = copies[selected]
-    copies[selected] +=1;
-    setVotes(copies[selected])
-    
-  }
-  var  max = Math.max.apply(null, copies);
-  // const maxVotes = ()=>{
-  //   copies.map((copy) =>{
-
-  //   })
+  // const handleVotes = () =>{
+  //   //votes = copies[selected]
+  //   copies[selected] +=1;
+  //   setVotes(copies[selected])   
   // }
-  var index = copies.indexOf(max)
+  const handleVotes = () =>{
+      //votes = copies[selected]
+      const updated = [...votes]
+      updated[selected]+=1
+      setVotes(updated)   
+      console.log(typeof(updated) + " updated") // coming out yo be object
+    }
+    
+  var  max = Math.max(...votes);
+  console.log(typeof(votes))
+  var index = votes.indexOf(max)
+
+
   return (
     <div>
       <h1>Anecdote of the day</h1>
      <p> {anecdotes[selected]}</p>
-     <p> has {votes} votes</p>
+     <p> has {votes[selected]} votes</p>
      <Button onClick = {handleVotes} text="vote"/>
       <Button onClick = {handleAnec} text = "next anecdote"/>
       <h1>Anecdote with most votes</h1>
