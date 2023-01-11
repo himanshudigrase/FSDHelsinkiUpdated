@@ -18,8 +18,8 @@ const App = () =>{
 
  
   const [selected, setSelected] = useState(0)
- // const [votes,setVotes] = useState(copies)
- const [votes,setVotes] = useState(Array(7).fill(0))
+ 
+  const [votes,setVotes] = useState(Array(7).fill(0))
   const handleAnec = () =>{
     setSelected(Math.floor(Math.random()*7))
   }
